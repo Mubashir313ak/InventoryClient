@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@font-face {
+  font-family: gilory;
+  src: url("/assets/gilroy-black.ttf") format("truetype");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2ccdc9;
+  --secondary: #333333;
+  --accent: #6b00ff;
+  --white: #ffffff;
+  --black-c: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: gilory;
+}
+
+.product-img-shadow{
+  box-shadow: 0px 0px 5px #00000044;
+}
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: auto 50px;
+}
+.slick-arrow:before {
+  padding: 10px;
+  background-color: #2ccdc9;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-20%);
+}
+
+.slick-prev {
+  left: -60px !important;
+}
+.footer {
+  background-image: url("./assets/bgFooter.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero {
+  background-image: url("./assets/header-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-sec-bg {
+  background-image: url("./assets/product-sec-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-carousel {
+  background-image: url("./assets/carouselTab -bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.heading-banner {
+  background-image: url("./assets/bannerbg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-slider-section {
+  background-image: url("./assets/productsliderbg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  text-stroke: 2px white;
+}
+
+.bottom-line-text {
+  position: relative;
+}
+
+.bottom-line-text:after {
+  content: "";
+  width: 100%;
+  background-color: var(--primary);
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+
+.banner-bottom-line-text {
+  position: relative;
+}
+
+.banner-bottom-line-text:after {
+  content: "";
+  width: 100%;
+  background-color: var(--primary);
+  position: absolute;
+  left: 50%;
+  max-width: 432px;
+  width: 100%;
+  height: 3px;
+  bottom: 5px;
+  transform: translate(-50%, 0%);
+}
+.services-card-shadow{
+    box-shadow: 0.349px 4.988px 6px 0px rgba(50, 50, 50, 0.24);   
+}
+
+.slick-slide>div{
+  margin-right: 20px;
+}
+
+
+ul.slick-dots {
+  display: flex !IMPORTANT;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  bottom: -50px;
+}
+
+button {
+  padding: 0px;
+}
+
+ul.slick-dots button {
+  padding: 0px !IMPORTANT;
+}
+
+ul.slick-dots li button:before {
+  content: "" !IMPORTANT;
+  background-color: #333333 !IMPORTANT;
+  height: 6px !IMPORTANT;
+  width: 12px !important;
+  border-radius: 100px;
+  opacity: 1 !IMPORTANT;
+}
+
+ul.slick-dots li.slick-active button:before {
+  width: 30px !IMPORTANT;
+  background-color: #2ccdc9 !IMPORTANT;
+}
+
+ul.slick-dots li {
+  height: auto !IMPORTANT;
+  width: 12px !important;
+  margin: 0px !important;
+}
+
+ul.slick-dots li.slick-active {
+  width: 30px !important;
+}
+
+
+@media (max-width: 1024px){
+  h2{
+    font-size: 35px;
+  }
+  
+}
+
+@media (max-width: 600px){
+  
+  .slick-slide>div{
+    margin-right: 0px;
+  }
+  .slick-prev {
+    left: -50px !important;
+  }
+}
