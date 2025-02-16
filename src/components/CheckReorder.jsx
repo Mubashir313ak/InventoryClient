@@ -12,7 +12,9 @@ const CheckReorder = () => {
 
   const fetchInventory = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/inventory");
+      const res = await axios.get(
+        "https://inventoryserver-production-02bd.up.railway.app/api/inventory"
+      );
       setInventory(res.data.items || []);
     } catch (error) {
       console.error("Error fetching inventory", error);
@@ -25,7 +27,7 @@ const CheckReorder = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/inventory/check-reorder/${id}`
+        `https://inventoryserver-production-02bd.up.railway.app/api/inventory/check-reorder/${id}`
       );
       fetchInventory(); // Refresh inventory after update
       setMessage(res.data.message);

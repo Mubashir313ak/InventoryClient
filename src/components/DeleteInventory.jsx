@@ -14,7 +14,7 @@ const DeleteInventory = () => {
   const fetchInventory = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/inventory?page=${currentPage}&limit=${limit}`
+        `https://inventoryserver-production-02bd.up.railway.app/api/inventory?page=${currentPage}&limit=${limit}`
       );
       console.log("API Response:", res.data);
       setInventory(res.data.items || []); // Ensure items exist
@@ -26,7 +26,9 @@ const DeleteInventory = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/inventory/delete/${id}`);
+      await axios.delete(
+        `https://inventoryserver-production-02bd.up.railway.app/api/inventory/delete/${id}`
+      );
       setInventory(inventory.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting item", error);

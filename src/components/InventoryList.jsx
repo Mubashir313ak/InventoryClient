@@ -5,6 +5,8 @@ const InventoryList = () => {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -12,9 +14,11 @@ const InventoryList = () => {
   }, [currentPage]);
 
   const fetchInventory = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/inventory?page=${currentPage}&limit=${itemsPerPage}`
+        `https://inventoryserver-production-02bd.up.railway.app/api/inventory?page=${currentPage}&limit=${itemsPerPage}`
       );
 
       if (res.data && Array.isArray(res.data.items)) {
@@ -23,18 +27,27 @@ const InventoryList = () => {
       }
     } catch (err) {
       console.error("Error fetching inventory:", err);
+      setError("Failed to fetch inventory data.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-4 text-blue-700">
+    <div className="p-6 bg-gray-900 text-white shadow-lg rounded-lg">
+      <h2 className="text-2xl font-bold text-center mb-4 text-blue-400">
         Inventory List
       </h2>
 
+      {/* Loading Indicator */}
+      {loading && <p className="text-center text-blue-400">Loading...</p>}
+
+      {/* Error Message */}
+      {error && <p className="text-center text-red-500">{error}</p>}
+
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-          <thead className="bg-blue-600 text-white">
+        <table className="min-w-full bg-gray-800 border border-gray-700 rounded-lg">
+          <thead className="bg-gray-700 text-white">
             <tr>
               <th className="py-2 px-4 border">Product</th>
               <th className="py-2 px-4 border">Quantity</th>
@@ -49,7 +62,9 @@ const InventoryList = () => {
               items.map((item) => (
                 <tr
                   key={item._id}
-                  className="text-center border hover:bg-gray-100 transition"
+                  className={`text-center border hover:bg-gray-700 transition ${
+                    item.quantity <= item.reorderLevel ? "bg-red-700" : ""
+                  }`}
                 >
                   <td className="py-2 px-4 border">{item.productName}</td>
                   <td className="py-2 px-4 border">{item.quantity}</td>
@@ -61,7 +76,7 @@ const InventoryList = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="text-center py-4 text-gray-500">
+                <td colSpan="6" className="text-center py-4 text-gray-400">
                   No inventory data available.
                 </td>
               </tr>
@@ -76,22 +91,22 @@ const InventoryList = () => {
           <button
             className={`px-4 py-2 mx-1 rounded ${
               currentPage === 1
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 text-white"
+                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-500"
             }`}
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           >
             Previous
           </button>
-          <span className="px-4 py-2 border rounded bg-gray-200">
+          <span className="px-4 py-2 border rounded bg-gray-700 text-white">
             Page {currentPage} of {totalPages}
           </span>
           <button
             className={`px-4 py-2 mx-1 rounded ${
               currentPage === totalPages
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 text-white"
+                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-500"
             }`}
             disabled={currentPage === totalPages}
             onClick={() =>

@@ -18,28 +18,37 @@ const AddInventory = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/inventory/add", formData)
+      .post(
+        "https://inventoryserver-production-02bd.up.railway.app/api/inventory/add",
+        formData
+      )
       .then(() => alert("Item added"))
       .catch((err) => console.log(err));
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded">
-      <h2 className="text-xl font-bold">Add Inventory</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 border rounded bg-gray-900 text-gray-300"
+    >
+      <h2 className="text-xl font-bold text-white">Add Inventory</h2>
       <input
-        className="border p-2 m-2"
+        className="border p-2 m-2 bg-gray-800 text-white"
         name="productName"
         placeholder="Product Name"
         onChange={handleChange}
       />
       <input
-        className="border p-2 m-2"
+        className="border p-2 m-2 bg-gray-800 text-white"
         name="quantity"
         type="number"
         placeholder="Quantity"
         onChange={handleChange}
       />
-      <button type="submit" className="bg-blue-500 text-white p-2 m-2 rounded">
+      <button
+        type="submit"
+        className="bg-blue-600 text-white p-2 m-2 rounded hover:bg-blue-700"
+      >
         Add Item
       </button>
     </form>

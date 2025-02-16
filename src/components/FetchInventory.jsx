@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://inventoryserver-production-02bd.up.railway.app");
 
 const FetchInventory = () => {
   const [inventory, setInventory] = useState([]);
@@ -32,7 +32,7 @@ const FetchInventory = () => {
   const fetchInventory = async (pageNumber) => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/inventory?page=${pageNumber}&limit=10`
+        `https://inventoryserver-production-02bd.up.railway.app/api/inventory?page=${pageNumber}&limit=10`
       );
       setInventory(res.data.items);
       setTotalPages(res.data.totalPages);
