@@ -7,6 +7,7 @@ import DeleteInventory from "./components/DeleteInventory";
 import CheckReorder from "./components/CheckReorder";
 import QueueSimulator from "./components/QueueSimulator";
 import HomePage from "./components/HomePage";
+import QueueingCalculator from "./components/MM1";
 
 function App() {
   const [activePage, setActivePage] = useState("home");
@@ -97,7 +98,7 @@ function App() {
             {activePage === "update" && <UpdateInventory />}
             {activePage === "delete" && <DeleteInventory />}
             {activePage === "check" && <CheckReorder />}
-            {activePage === "queue" && <QueueSimulator />}
+            {activePage === "queue" && <QueueingCalculator />}
           </div>
         </div>
       )}
